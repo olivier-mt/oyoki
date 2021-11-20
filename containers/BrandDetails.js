@@ -20,7 +20,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const BrandDetails = () => {
+const BrandDetails = ({route, navigation}) => {
+  console.log('PARAMS', route.params);
+
   return (
     <SafeAreaView>
       <StatusBar />

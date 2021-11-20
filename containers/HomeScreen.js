@@ -12,6 +12,7 @@ import {
   View,
   Image,
   TouchableHighlight,
+  FlatList,
 } from 'react-native';
 
 import {
@@ -20,6 +21,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+import BrandCard from '../components/BrandCard';
 
 const HomeScreen = ({navigation}) => {
   const [finalBrands, setFinalBrands] = useState();
@@ -32,7 +35,12 @@ const HomeScreen = ({navigation}) => {
         .doc('mawu')
         .collection('ARTICLES')
         .get();
-      console.log('brandss', brands._docs['0']._data.main_picture);
+
+      //
+      // console.log('brandss', brands._docs['0']._data.main_picture);
+
+      console.log('brandss', brands._docs);
+
       // console.log('articles', articles._docs);
 
       setFinalBrands(brands._docs);
@@ -41,33 +49,29 @@ const HomeScreen = ({navigation}) => {
     getBrands();
   }, []);
 
-  const isDarkMode = useColorScheme() === 'dark';
+  const displayBrands = () => {
+    const brands = [];
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    for (let i = 0; i < finalBrands.length; i++) {
+      brands.push(
+        <BrandCard finalBrands={finalBrands} i={i} navigation={navigation} />,
+      );
+    }
+
+    return brands;
   };
 
   return finalBrands ? (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <TouchableHighlight onPress={() => navigation.navigate('Details')}>
-          <Image
-            style={styles.img}
-            source={{uri: finalBrands['0']._data.main_picture}}
-            onPress={() => console.log('ok')}
-          />
-        </TouchableHighlight>
+    <SafeAreaView>
+      <StatusBar />
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
+        {displayBrands()}
       </ScrollView>
     </SafeAreaView>
   ) : (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+    <SafeAreaView>
+      <StatusBar />
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
         <View>
           <Text>okok</Text>
         </View>
