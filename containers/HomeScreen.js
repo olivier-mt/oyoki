@@ -54,14 +54,21 @@ const HomeScreen = ({navigation}) => {
 
     for (let i = 0; i < finalBrands.length; i++) {
       brands.push(
-        <BrandCard finalBrands={finalBrands} i={i} navigation={navigation} />,
+        <BrandCard
+          key={i}
+          finalBrands={finalBrands}
+          i={i}
+          navigation={navigation}
+        />,
       );
     }
 
     return brands;
   };
 
-  return finalBrands ? (
+  console.log('final brands', finalBrands);
+
+  return finalBrands && finalBrands.length > 1 ? (
     <SafeAreaView>
       <StatusBar />
       <ScrollView contentInsetAdjustmentBehavior="automatic">

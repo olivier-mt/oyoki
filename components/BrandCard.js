@@ -30,7 +30,6 @@ const BrandCard = ({finalBrands, i, navigation}) => {
 
   return (
     <TouchableOpacity
-      key={i}
       onPress={() => navigation.navigate('Details', brand)}
       style={styles.card}>
       <View>

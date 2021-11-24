@@ -7,6 +7,42 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:425299116327:android:d5c1036e5324133b146902",
+        "android_client_info": {
+          "package_name": "com.oliviermountou.oyoki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425299116327-np18j65tfpjkrjvc46vo900b2u96ur09.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwsgw0sfABWpTtwLUB0pVp9lRGUlFpIr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425299116327-np18j65tfpjkrjvc46vo900b2u96ur09.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "425299116327-9kgmrtansbqi3ct2cnvm7jm511rh02g2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.oyoki"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:425299116327:android:c89a130c2496a92e146902",
         "android_client_info": {
           "package_name": "com.oyoki"
@@ -29,6 +65,13 @@
             {
               "client_id": "425299116327-np18j65tfpjkrjvc46vo900b2u96ur09.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "425299116327-9kgmrtansbqi3ct2cnvm7jm511rh02g2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.oyoki"
+              }
             }
           ]
         }

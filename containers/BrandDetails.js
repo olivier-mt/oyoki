@@ -11,24 +11,90 @@ import {
   useColorScheme,
   View,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
 const BrandDetails = ({route, navigation}) => {
-  console.log('PARAMS', route.params);
+  const [finalBrand, setFinalBrand] = useState();
+  const [reading, setReading] = useState(false);
 
-  return (
+  const {internal_name} = route.params;
+
+  useEffect(() => {
+    const getBrand = async () => {
+      const brand = await firestore()
+        .collection('BRANDS')
+        .doc(`${internal_name}`)
+        .get();
+
+      setFinalBrand(brand._data);
+
+      console.log('THE BRAND', brand);
+    };
+
+    getBrand();
+  }, []);
+
+  const displayPictures = () => {
+    const arr = [];
+
+    // console.log('arr', finalBrand.pictures);
+
+    for (let i = 0; i < finalBrand.pictures.length; i++) {
+      arr.push(
+        <Image
+          style={styles.littlePicture}
+          source={{uri: finalBrand.pictures[i]}}
+          key={i}
+        />,
+      );
+    }
+
+    console.log('arr', arr);
+
+    return arr;
+  };
+
+  //finalBrand && displayPictures();
+
+  return finalBrand ? (
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar />
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <Image style={styles.img} source={{uri: finalBrand.main_picture}} />
+        <View style={styles.greyView}>
+          <Text>7 jours restants</Text>
+        </View>
+        <Text style={styles.title}>{`${finalBrand.name}`} oui</Text>
+        <Text>
+          20% de réduction sur le site avec le code:
+          {`${finalBrand.discount_code}`}
+        </Text>
+
+        <TouchableOpacity
+          onPress={() => {
+            setReading(!reading);
+          }}>
+          <Text numberOfLines={reading ? 100 : 2} ellipsizeMode="tail">
+            {`${finalBrand.desciption}`}
+          </Text>
+          <Text>{reading ? 'Replier' : 'Lire plus'}</Text>
+        </TouchableOpacity>
+        <View style={styles.instaView}>
+          <TouchableOpacity>
+            <Text>{finalBrand.insta_name}</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.imgView}>{displayPictures()}</View>
+      </ScrollView>
+    </SafeAreaView>
+  ) : (
     <SafeAreaView>
       <StatusBar />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <View>
-          <Text>Brand Details</Text>
+          <Text>Brand Details non</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -36,25 +102,39 @@ const BrandDetails = ({route, navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  title: {
+    marginTop: 20,
   },
   img: {
     height: 300,
-    width: 300,
+  },
+  greyView: {
+    height: 31,
+    backgroundColor: 'rgba(229, 229, 229, 0.24)',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    paddingRight: 20,
+  },
+  safeArea: {
+    backgroundColor: 'rgb(255, 255, 255)',
+    height: '100%',
+  },
+  instaView: {
+    backgroundColor: 'green',
+    height: 20,
+  },
+  littlePicture: {
+    height: 150,
+    width: 150,
+    margin: 1,
+  },
+  imgView: {
+    backgroundColor: 'blue',
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    //alignItems: 'center',
   },
 });
 
