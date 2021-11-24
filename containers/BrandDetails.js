@@ -38,8 +38,6 @@ const BrandDetails = ({route, navigation}) => {
   const displayPictures = () => {
     const arr = [];
 
-    // console.log('arr', finalBrand.pictures);
-
     for (let i = 0; i < finalBrand.pictures.length; i++) {
       arr.push(
         <Image
@@ -50,12 +48,8 @@ const BrandDetails = ({route, navigation}) => {
       );
     }
 
-    console.log('arr', arr);
-
     return arr;
   };
-
-  //finalBrand && displayPictures();
 
   return finalBrand ? (
     <SafeAreaView style={styles.safeArea}>
@@ -65,7 +59,7 @@ const BrandDetails = ({route, navigation}) => {
         <View style={styles.greyView}>
           <Text>7 jours restants</Text>
         </View>
-        <Text style={styles.title}>{`${finalBrand.name}`} oui</Text>
+        <Text style={styles.title}>{`${finalBrand.name}`}</Text>
         <Text>
           20% de réduction sur le site avec le code:
           {`${finalBrand.discount_code}`}
@@ -88,6 +82,9 @@ const BrandDetails = ({route, navigation}) => {
 
         <View style={styles.imgView}>{displayPictures()}</View>
       </ScrollView>
+      <TouchableOpacity style={styles.webSiteBtn}>
+        <Text>Aller sur le site</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   ) : (
     <SafeAreaView>
@@ -118,6 +115,8 @@ const styles = StyleSheet.create({
   safeArea: {
     backgroundColor: 'rgb(255, 255, 255)',
     height: '100%',
+    position: 'relative',
+    alignItems: 'center',
   },
   instaView: {
     backgroundColor: 'green',
@@ -135,6 +134,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     //alignItems: 'center',
+  },
+  webSiteBtn: {
+    position: 'absolute',
+    backgroundColor: 'green',
+    bottom: 25,
   },
 });
 

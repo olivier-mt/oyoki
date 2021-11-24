@@ -13,6 +13,7 @@ import {
   Image,
   TouchableHighlight,
   FlatList,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
