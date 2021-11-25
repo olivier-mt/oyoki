@@ -15,6 +15,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import iconeInsta from '../assets/img/instagram.png';
+
 const BrandDetails = ({route, navigation}) => {
   const [finalBrand, setFinalBrand] = useState();
   const [reading, setReading] = useState(false);
@@ -59,22 +61,41 @@ const BrandDetails = ({route, navigation}) => {
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Image style={styles.img} source={{uri: finalBrand.main_picture}} />
         <View style={styles.greyView}>
-          <Text>7 jours restants</Text>
+          <Text
+            style={{
+              color: 'rgba(95, 93, 93, 1)',
+
+              fontFamily: 'Ruda-SemiBold',
+            }}>
+            7 jours restants
+          </Text>
         </View>
         <Text style={styles.title}>{`${finalBrand.name}`}</Text>
-        <Text>
+        <Text style={styles.offer}>
           20% de réduction sur le site avec le code:
-          {`${finalBrand.discount_code}`}
+          <Text style={styles.code}> {`${finalBrand.discount_code}`}</Text>
         </Text>
 
         <TouchableOpacity
+          style={styles.description}
           onPress={() => {
             setReading(!reading);
           }}>
-          <Text numberOfLines={reading ? 100 : 2} ellipsizeMode="tail">
+          <Text
+            style={{
+              color: 'black',
+            }}
+            numberOfLines={reading ? 100 : 2}
+            ellipsizeMode="tail">
             {`${finalBrand.desciption}`}
           </Text>
-          <Text>{reading ? 'Replier' : 'Lire plus'}</Text>
+          <Text
+            style={{
+              color: 'rgba(33, 205, 205, 1)',
+              fontFamily: 'Ruda-SemiBold',
+            }}>
+            {reading ? 'Replier' : 'Lire plus'}
+          </Text>
         </TouchableOpacity>
         <View style={styles.instaView}>
           <TouchableOpacity
@@ -82,8 +103,10 @@ const BrandDetails = ({route, navigation}) => {
               navigation.navigate('WebViewScreen', {
                 url: `${finalBrand.insta_url}`,
               })
-            }>
-            <Text>{finalBrand.insta_name}</Text>
+            }
+            style={styles.instaElems}>
+            <Image source={iconeInsta} style={{backgroundColor: 'green'}} />
+            <Text style={styles.instaText}>{finalBrand.insta_name}</Text>
           </TouchableOpacity>
         </View>
 
@@ -96,18 +119,15 @@ const BrandDetails = ({route, navigation}) => {
         onPress={() =>
           navigation.navigate('WebViewScreen', {url: `${finalBrand.site_url}`})
         }>
-        <Text>Aller sur le site</Text>
+        <Text
+          style={{
+            fontFamily: 'Roboto-Bold',
+            color: 'white',
+            fontSize: 15,
+          }}>
+          Aller sur le site
+        </Text>
       </TouchableOpacity>
-
-      {/*<View style={{height: '90%', width: '90%'}}>
-          <WebView
-            source={{uri: 'https://www.google.com/'}}
-            style={{marginTop: 20}}
-            onLoad={() => {
-              console.log('webview loading');
-            }}
-          />
-        </View>*/}
     </SafeAreaView>
   ) : (
     <SafeAreaView>
@@ -124,9 +144,30 @@ const BrandDetails = ({route, navigation}) => {
 const styles = StyleSheet.create({
   title: {
     marginTop: 20,
+    fontFamily: 'Ruda-Bold',
+    fontSize: 24,
+    color: 'black',
+    marginLeft: 10,
+  },
+  offer: {
+    fontFamily: 'Ruda-Regular',
+    fontSize: 15,
+    color: 'rgba(155, 155, 155, 1)',
+    marginLeft: 10,
+  },
+  code: {
+    color: 'black',
+    fontFamily: 'Ruda-SemiBold',
+  },
+  description: {
+    marginTop: 10,
+    fontFamily: 'Ruda-Thin',
+    fontSize: 15,
+    color: 'black',
+    marginLeft: 10,
   },
   img: {
-    height: 300,
+    height: 250,
   },
   greyView: {
     height: 31,
@@ -141,9 +182,23 @@ const styles = StyleSheet.create({
     position: 'relative',
     alignItems: 'center',
   },
+
   instaView: {
-    backgroundColor: 'green',
+    //backgroundColor: 'green',
     height: 20,
+    marginTop: 10,
+    marginLeft: 10,
+    maxWidth: 200,
+  },
+  instaElems: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'grey',
+  },
+  instaText: {
+    fontFamily: 'Roboto-Medium',
+    color: 'black',
   },
   littlePicture: {
     height: 150,
@@ -160,8 +215,14 @@ const styles = StyleSheet.create({
   },
   webSiteBtn: {
     position: 'absolute',
-    backgroundColor: 'green',
+    backgroundColor: 'rgba(33, 205, 205, 1)',
+    height: 42,
+    width: 270,
+    borderRadius: 15,
     bottom: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'Roboto-Bold',
   },
   centeredView: {
     flex: 1,

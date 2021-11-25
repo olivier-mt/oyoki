@@ -53,12 +53,21 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   title: {
-    margin: 15,
-    fontFamily: 'Roboto-Bold',
+    marginTop: 15,
+    marginLeft: 15,
+
+    fontFamily: 'Ruda-Bold',
+    fontSize: 24,
+    color: 'black',
   },
 
   subtitle: {
     marginLeft: 15,
+    marginTop: 10,
+
+    color: 'rgba(155, 155, 155, 1)',
+    fontFamily: 'Ruda-SemiBold',
+    fontSize: 15,
   },
 });
 
