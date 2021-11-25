@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import type {Node} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import {WebView} from 'react-native-webview';
+import * as Progress from 'react-native-progress';
+import {Svg} from 'react-native-svg';
 
 import {
   SafeAreaView,
@@ -29,6 +31,9 @@ const WebViewScreen = ({route}) => {
 
   const {url} = route.params;
 
+  const [progress, setProgress] = useState(0);
+  const [loading, setLoading] = useState(false);
+
   return (
     <SafeAreaView>
       <View
@@ -36,11 +41,27 @@ const WebViewScreen = ({route}) => {
           height: '100%',
           width: '100%',
         }}>
+        {loading && (
+          <Progress.Bar
+            progress={progress}
+            width={null}
+            height={8}
+            animated={true}
+            borderRadius={0}
+            borderWidth={0}
+          />
+        )}
         <WebView
           source={{uri: url}}
           style={{marginTop: 20}}
-          onLoad={() => {
-            // console.log('webview loading');
+          onLoadStart={() => {
+            setLoading(true);
+          }}
+          onLoadProgress={event => {
+            setProgress(event.nativeEvent.progress);
+          }}
+          onLoadEnd={() => {
+            setLoading(false);
           }}
         />
       </View>

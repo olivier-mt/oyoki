@@ -50,9 +50,11 @@ const styles = StyleSheet.create({
   card: {
     width: screenWidth,
     height: 300,
+    backgroundColor: 'white',
   },
   title: {
     margin: 15,
+    fontFamily: 'Roboto-Bold',
   },
 
   subtitle: {
