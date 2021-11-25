@@ -31,16 +31,18 @@ const WebViewScreen = ({route}) => {
 
   return (
     <SafeAreaView>
-      <View style={{height: '100%', width: '100%'}}>
-        <View style={{height: '100%', width: '100%'}}>
-          <WebView
-            source={{uri: url}}
-            style={{marginTop: 20}}
-            onLoad={() => {
-              console.log('webview loading');
-            }}
-          />
-        </View>
+      <View
+        style={{
+          height: '100%',
+          width: '100%',
+        }}>
+        <WebView
+          source={{uri: url}}
+          style={{marginTop: 20}}
+          onLoad={() => {
+            // console.log('webview loading');
+          }}
+        />
       </View>
     </SafeAreaView>
   );
