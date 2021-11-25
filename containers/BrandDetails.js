@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Component, Modal} from 'react';
 import type {Node} from 'react';
 import firestore from '@react-native-firebase/firestore';
+import {WebView} from 'react-native-webview';
 
 import {
   SafeAreaView,
@@ -17,6 +18,7 @@ import {
 const BrandDetails = ({route, navigation}) => {
   const [finalBrand, setFinalBrand] = useState();
   const [reading, setReading] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const {internal_name} = route.params;
 
@@ -75,16 +77,37 @@ const BrandDetails = ({route, navigation}) => {
           <Text>{reading ? 'Replier' : 'Lire plus'}</Text>
         </TouchableOpacity>
         <View style={styles.instaView}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('WebViewScreen', {
+                url: `${finalBrand.insta_url}`,
+              })
+            }>
             <Text>{finalBrand.insta_name}</Text>
           </TouchableOpacity>
         </View>
 
+        <View style={styles.centeredView}></View>
+
         <View style={styles.imgView}>{displayPictures()}</View>
       </ScrollView>
-      <TouchableOpacity style={styles.webSiteBtn}>
+      <TouchableOpacity
+        style={styles.webSiteBtn}
+        onPress={() =>
+          navigation.navigate('WebViewScreen', {url: `${finalBrand.site_url}`})
+        }>
         <Text>Aller sur le site</Text>
       </TouchableOpacity>
+
+      {/*<View style={{height: '90%', width: '90%'}}>
+          <WebView
+            source={{uri: 'https://www.google.com/'}}
+            style={{marginTop: 20}}
+            onLoad={() => {
+              console.log('webview loading');
+            }}
+          />
+        </View>*/}
     </SafeAreaView>
   ) : (
     <SafeAreaView>
@@ -139,6 +162,24 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: 'green',
     bottom: 25,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
   },
 });
 

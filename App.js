@@ -16,6 +16,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import HomeScreen from './containers/HomeScreen';
 import BrandDetails from './containers/BrandDetails';
+import WebViewScreen from './containers/WebViewScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,6 +30,7 @@ function Brands() {
         options={{headerShown: false}}
       />
       <Stack.Screen name="Details" component={BrandDetails} />
+      <Stack.Screen name="WebViewScreen" component={WebViewScreen} />
     </Stack.Navigator>
   );
 }
