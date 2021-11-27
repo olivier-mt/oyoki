@@ -1,7 +1,9 @@
 import React, {useState, useEffect, Component, Modal} from 'react';
 import type {Node} from 'react';
 import firestore from '@react-native-firebase/firestore';
-import {WebView} from 'react-native-webview';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faCoffee} from '@fortawesome/free-solid-svg-icons';
+import {faInstagram} from '@fortawesome/free-brands-svg-icons';
 
 import {
   SafeAreaView,
@@ -105,7 +107,8 @@ const BrandDetails = ({route, navigation}) => {
               })
             }
             style={styles.instaElems}>
-            <Image source={iconeInsta} style={{backgroundColor: 'green'}} />
+            <FontAwesomeIcon icon={faInstagram} />
+
             <Text style={styles.instaText}>{finalBrand.insta_name}</Text>
           </TouchableOpacity>
         </View>
@@ -113,6 +116,7 @@ const BrandDetails = ({route, navigation}) => {
         <View style={styles.centeredView}></View>
 
         <View style={styles.imgView}>{displayPictures()}</View>
+        <View style={{height: 50}}></View>
       </ScrollView>
       <TouchableOpacity
         style={styles.webSiteBtn}
@@ -194,19 +198,21 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'grey',
+    //backgroundColor: 'grey',
   },
   instaText: {
     fontFamily: 'Roboto-Medium',
     color: 'black',
+    marginLeft: 2,
   },
   littlePicture: {
     height: 150,
     width: 150,
     margin: 1,
+    borderRadius: 5,
   },
   imgView: {
-    backgroundColor: 'blue',
+    // backgroundColor: 'blue',
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'row',
