@@ -71,7 +71,7 @@ const HomeScreen = ({navigation}) => {
 
   return finalBrands && finalBrands.length > 1 ? (
     <SafeAreaView>
-      <StatusBar />
+      <View style={styles.seachView}></View>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         {displayBrands()}
       </ScrollView>
@@ -101,6 +101,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
+  },
+  seachView: {
+    height: 50,
+    backgroundColor: 'white',
+    borderBottomColor: 'grey',
   },
   highlight: {
     fontWeight: '700',

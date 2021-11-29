@@ -49,11 +49,11 @@ const styles = StyleSheet.create({
   },
   card: {
     width: screenWidth,
-    height: 300,
+    height: 280,
     backgroundColor: 'white',
   },
   title: {
-    marginTop: 15,
+    marginTop: 10,
     marginLeft: 15,
 
     fontFamily: 'Ruda-Bold',
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
 
   subtitle: {
     marginLeft: 15,
-    marginTop: 10,
+    marginTop: 5,
 
     color: 'rgba(155, 155, 155, 1)',
     fontFamily: 'Ruda-SemiBold',
