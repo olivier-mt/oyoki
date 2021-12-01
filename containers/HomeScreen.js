@@ -24,9 +24,11 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import BrandCard from '../components/BrandCard';
+import Logo from '../assets/img/logo.png';
 
 const HomeScreen = ({navigation}) => {
   const [finalBrands, setFinalBrands] = useState();
+  const [category, setCategory] = useState('mode');
 
   useEffect(() => {
     const getBrands = async () => {
@@ -67,13 +69,37 @@ const HomeScreen = ({navigation}) => {
     return brands;
   };
 
+  const displayFilteredBrands = () => {
+    const brands = [];
+
+    for (let i = 0; i < finalBrands.length; i++) {
+      console.log('final brand i', finalBrands[i]);
+      if (finalBrands[i]._data.category === category) {
+        brands.push(
+          <BrandCard
+            key={i}
+            finalBrands={finalBrands}
+            i={i}
+            navigation={navigation}
+          />,
+        );
+      }
+    }
+
+    console.log('the brands ', brands);
+
+    return brands;
+  };
+
   console.log('final brands', finalBrands);
 
   return finalBrands && finalBrands.length > 1 ? (
-    <SafeAreaView>
-      <View style={styles.seachView}></View>
+    <SafeAreaView style={{height: '100%', backgroundColor: 'white'}}>
+      <View style={styles.seachView}>
+        <Image source={Logo} style={{height: 100, width: 100}}></Image>
+      </View>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        {displayBrands()}
+        {category === '' ? displayBrands() : displayFilteredBrands()}
       </ScrollView>
     </SafeAreaView>
   ) : (
@@ -106,6 +132,9 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: 'white',
     borderBottomColor: 'grey',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'green',
   },
   highlight: {
     fontWeight: '700',

@@ -23,19 +23,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import Logo from '../assets/img/logo.png';
-
-const Options = ({navigation}) => {
+const Contact = () => {
   return (
     <SafeAreaView style={{backgroundColor: 'white', height: '100%'}}>
-      <View style={styles.seachView}>
-        <Image source={Logo} style={{height: 100, width: 100}}></Image>
-      </View>
-      <TouchableOpacity
-        style={styles.cell}
-        onPress={() => navigation.navigate('Contact')}>
-        <Text>Nous Contacter</Text>
-      </TouchableOpacity>
+      <Text>Contact View</Text>
     </SafeAreaView>
   );
 };
@@ -55,9 +46,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderBottomColor: 'grey',
     borderBottomWidth: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 
-export default Options;
+export default Contact;
