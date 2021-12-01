@@ -17,6 +17,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './containers/HomeScreen';
 import BrandDetails from './containers/BrandDetails';
 import WebViewScreen from './containers/WebViewScreen';
+import Options from './containers/Options';
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faHome, faBars, faUser} from '@fortawesome/free-solid-svg-icons';
@@ -67,7 +68,16 @@ const App = () => {
             ),
           }}
         />
-        {/*<Tab.Screen name="Profile" component={BrandDetails} />*/}
+        <Tab.Screen
+          name="Options"
+          component={Options}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({color}) => (
+              <FontAwesomeIcon icon={faUser} size={23} color="grey" />
+            ),
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
