@@ -29,7 +29,7 @@ const Options = ({navigation}) => {
   return (
     <SafeAreaView style={{backgroundColor: 'white', height: '100%'}}>
       <View style={styles.seachView}>
-        <Image source={Logo} style={{height: 100, width: 100}}></Image>
+        <Image source={Logo} style={{height: 40, width: 40}}></Image>
       </View>
       <TouchableOpacity
         style={styles.cell}

@@ -23,43 +23,69 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const SearchBar = ({setCategory}) => {
+import Logo from '../assets/img/logo.png';
+
+const SearchBar = ({setCategory, category}) => {
+  //const [allBrandActivated, setAllBrandActivated] = useState(false);
+  //const [modeActivated, setModeActivated] = useState(false);
+  //const [cosmeticActivated, setCosmeticActivated] = useState(false);
+
   return (
     <ScrollView
       horizontal={true}
       showsHorizontalScrollIndicator={false}
       style={styles.searchView}
       contentContainerStyle={{alignItems: 'center'}}>
+      <Image source={Logo} style={{height: 40, width: 40, margin: 10}} />
+
       <TouchableOpacity
+        style={category === '' ? styles.buttonActivated : styles.button}
         onPress={() => {
           setCategory('');
         }}>
-        <Text>Toutes les marques </Text>
+        <Text style={category === '' ? styles.textActivated : styles.text}>
+          Toutes les marques
+        </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
+        style={category === 'mode' ? styles.buttonActivated : styles.button}
         onPress={() => {
           setCategory('mode');
         }}>
-        <Text>Mode </Text>
+        <Text style={category === 'mode' ? styles.textActivated : styles.text}>
+          Mode
+        </Text>
       </TouchableOpacity>
+
       <TouchableOpacity
+        style={category === 'beauty' ? styles.buttonActivated : styles.button}
         onPress={() => {
           setCategory('beauty');
         }}>
-        <Text>Beauty </Text>
+        <Text
+          style={category === 'beauty' ? styles.textActivated : styles.text}>
+          Beauty
+        </Text>
       </TouchableOpacity>
+
       <TouchableOpacity
+        style={styles.button}
         onPress={() => {
           setCategory('houseItem');
         }}>
-        <Text>Maison </Text>
+        <Text
+          style={category === 'houseItem' ? styles.textActivated : styles.text}>
+          Maison
+        </Text>
       </TouchableOpacity>
+
       <TouchableOpacity
+        style={styles.button}
         onPress={() => {
           setCategory('accessories');
         }}>
-        <Text>Bijoux et accessoires </Text>
+        <Text>Bijoux et accessoires</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -67,12 +93,33 @@ const SearchBar = ({setCategory}) => {
 
 const styles = StyleSheet.create({
   searchView: {
-    backgroundColor: 'green',
+    //  backgroundColor: 'green',
     display: 'flex',
     flexDirection: 'row',
     height: 40,
   },
-  button: {},
+  button: {
+    // borderColor: 'black',
+    marginRight: 10,
+    height: 40,
+    justifyContent: 'center',
+  },
+  buttonActivated: {
+    marginRight: 10,
+    height: 40,
+    justifyContent: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: 'black',
+    //backgroundColor: 'yellow',
+  },
+  text: {
+    fontFamily: 'Ruda-SemiBold',
+    color: 'rgba(155, 155, 155, 1)',
+  },
+  textActivated: {
+    fontFamily: 'Ruda-SemiBold',
+    color: 'black',
+  },
 });
 
 export default SearchBar;

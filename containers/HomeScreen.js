@@ -42,7 +42,7 @@ const HomeScreen = ({navigation}) => {
       //
       // console.log('brandss', brands._docs['0']._data.main_picture);
 
-      console.log('brandss', brands._docs);
+      // console.log('brandss', brands._docs);
 
       // console.log('articles', articles._docs);
 
@@ -86,21 +86,17 @@ const HomeScreen = ({navigation}) => {
       }
     }
 
-    console.log('the brands ', brands);
+    // console.log('the brands ', brands);
 
     return brands;
   };
 
-  console.log('final brands', finalBrands);
+  //console.log('final brands', finalBrands);
 
   return finalBrands && finalBrands.length > 1 ? (
     <SafeAreaView style={{height: '100%', backgroundColor: 'white'}}>
       <View style={styles.header}>
-        <Image
-          source={Logo}
-          style={{height: 40, width: 40, margin: 10}}></Image>
-
-        <SearchBar setCategory={setCategory} />
+        <SearchBar setCategory={setCategory} category={category} />
       </View>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         {category === '' ? displayBrands() : displayFilteredBrands()}

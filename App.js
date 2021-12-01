@@ -9,7 +9,7 @@
 import React, {useState, useEffect} from 'react';
 import type {Node} from 'react';
 import firestore from '@react-native-firebase/firestore';
-import {Image} from 'react-native';
+import {Image, Platform, Text} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -42,7 +42,18 @@ function Brands() {
         component={BrandDetails}
         options={{
           headerBackTitle: '',
-          headerTitle: '',
+          headerTitle: () => {
+            return Platform.OS === 'ios' ? (
+              <Image
+                style={{width: 35, height: 35}}
+                source={Logo}
+                //resizeMode="contain"
+              />
+            ) : (
+              <Text></Text>
+            );
+          },
+          headerTitleStyle: {flex: 1, textAlign: 'center'},
         }}
       />
       <Stack.Screen
@@ -50,7 +61,17 @@ function Brands() {
         component={WebViewScreen}
         options={{
           headerBackTitle: '',
-          headerTitle: '',
+          headerTitle: () => {
+            return Platform.OS === 'ios' ? (
+              <Image
+                style={{width: 35, height: 35}}
+                source={Logo}
+                //resizeMode="contain"
+              />
+            ) : (
+              <Text></Text>
+            );
+          },
         }}
       />
     </Stack.Navigator>
