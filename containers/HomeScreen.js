@@ -22,13 +22,13 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
+import SearchBar from '../components/SearchBar';
 import BrandCard from '../components/BrandCard';
 import Logo from '../assets/img/logo.png';
 
 const HomeScreen = ({navigation}) => {
   const [finalBrands, setFinalBrands] = useState();
-  const [category, setCategory] = useState('mode');
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     const getBrands = async () => {
@@ -73,7 +73,7 @@ const HomeScreen = ({navigation}) => {
     const brands = [];
 
     for (let i = 0; i < finalBrands.length; i++) {
-      console.log('final brand i', finalBrands[i]);
+      // console.log('final brand i', finalBrands[i]);
       if (finalBrands[i]._data.category === category) {
         brands.push(
           <BrandCard
@@ -95,8 +95,12 @@ const HomeScreen = ({navigation}) => {
 
   return finalBrands && finalBrands.length > 1 ? (
     <SafeAreaView style={{height: '100%', backgroundColor: 'white'}}>
-      <View style={styles.seachView}>
-        <Image source={Logo} style={{height: 100, width: 100}}></Image>
+      <View style={styles.header}>
+        <Image
+          source={Logo}
+          style={{height: 40, width: 40, margin: 10}}></Image>
+
+        <SearchBar setCategory={setCategory} />
       </View>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         {category === '' ? displayBrands() : displayFilteredBrands()}
@@ -128,20 +132,25 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
   },
-  seachView: {
-    height: 50,
-    backgroundColor: 'white',
+  header: {
+    height: 60,
+    // backgroundColor: 'yellow',
     borderBottomColor: 'grey',
-    justifyContent: 'center',
+    //justifyContent: 'center',
+
+    display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
     // backgroundColor: 'green',
   },
+
   highlight: {
     fontWeight: '700',
   },
   img: {
     height: 300,
     width: 300,
+    color: 'red',
   },
 });
 
