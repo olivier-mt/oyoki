@@ -25,6 +25,8 @@ import {
 
 import Logo from '../assets/img/logo.png';
 
+import SearchBarBtn from '../components/SearchBarBtn';
+
 const SearchBar = ({setCategory, category}) => {
   //const [allBrandActivated, setAllBrandActivated] = useState(false);
   //const [modeActivated, setModeActivated] = useState(false);
@@ -38,55 +40,75 @@ const SearchBar = ({setCategory, category}) => {
       contentContainerStyle={{alignItems: 'center'}}>
       <Image source={Logo} style={{height: 40, width: 40, margin: 10}} />
 
-      <TouchableOpacity
-        style={category === '' ? styles.buttonActivated : styles.button}
-        onPress={() => {
-          setCategory('');
-        }}>
-        <Text style={category === '' ? styles.textActivated : styles.text}>
-          Toutes les marques
-        </Text>
-      </TouchableOpacity>
+      <SearchBarBtn
+        category={category}
+        setCategory={setCategory}
+        data={''}
+        text={'Toutes les marques'}
+      />
 
-      <TouchableOpacity
-        style={category === 'mode' ? styles.buttonActivated : styles.button}
-        onPress={() => {
-          setCategory('mode');
-        }}>
-        <Text style={category === 'mode' ? styles.textActivated : styles.text}>
-          Mode
-        </Text>
-      </TouchableOpacity>
+      <SearchBarBtn
+        category={category}
+        setCategory={setCategory}
+        data={'mode'}
+        text={'Mode'}
+      />
 
-      <TouchableOpacity
-        style={category === 'beauty' ? styles.buttonActivated : styles.button}
-        onPress={() => {
-          setCategory('beauty');
-        }}>
-        <Text
-          style={category === 'beauty' ? styles.textActivated : styles.text}>
-          Beauty
-        </Text>
-      </TouchableOpacity>
+      <SearchBarBtn
+        category={category}
+        setCategory={setCategory}
+        data={'beauty'}
+        text={'Cosmétique'}
+      />
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          setCategory('houseItem');
-        }}>
-        <Text
-          style={category === 'houseItem' ? styles.textActivated : styles.text}>
-          Maison
-        </Text>
-      </TouchableOpacity>
+      <SearchBarBtn
+        category={category}
+        setCategory={setCategory}
+        data={'houseItem'}
+        text={'Maison'}
+      />
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          setCategory('accessories');
-        }}>
-        <Text>Bijoux et accessoires</Text>
-      </TouchableOpacity>
+      <SearchBarBtn
+        category={category}
+        setCategory={setCategory}
+        data={'accessories'}
+        text={'Bijoux & Accessoires'}
+      />
+
+      <SearchBarBtn
+        category={category}
+        setCategory={setCategory}
+        data={'stationery'}
+        text={'Papeterie'}
+      />
+
+      <SearchBarBtn
+        category={category}
+        setCategory={setCategory}
+        data={'grocery'}
+        text={'Épicerie'}
+      />
+
+      <SearchBarBtn
+        category={category}
+        setCategory={setCategory}
+        data={'tech'}
+        text={'High-Tech'}
+      />
+
+      <SearchBarBtn
+        category={category}
+        setCategory={setCategory}
+        data={'leisure'}
+        text={'Loisir'}
+      />
+
+      <SearchBarBtn
+        category={category}
+        setCategory={setCategory}
+        data={'kids'}
+        text={'Kids'}
+      />
     </ScrollView>
   );
 };
@@ -113,12 +135,14 @@ const styles = StyleSheet.create({
     //backgroundColor: 'yellow',
   },
   text: {
-    fontFamily: 'Ruda-SemiBold',
+    fontFamily: 'Ruda-Bold',
     color: 'rgba(155, 155, 155, 1)',
+    fontSize: 16,
   },
   textActivated: {
-    fontFamily: 'Ruda-SemiBold',
+    fontFamily: 'Ruda-Bold',
     color: 'black',
+    fontSize: 16,
   },
 });
 
