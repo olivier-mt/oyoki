@@ -19,6 +19,8 @@ import {
 
 import iconeInsta from '../assets/img/instagram.png';
 
+import * as Progress from 'react-native-progress';
+
 const BrandDetails = ({route, navigation}) => {
   const [finalBrand, setFinalBrand] = useState();
   const [reading, setReading] = useState(false);
@@ -134,13 +136,16 @@ const BrandDetails = ({route, navigation}) => {
       </TouchableOpacity>
     </SafeAreaView>
   ) : (
-    <SafeAreaView>
-      <StatusBar />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View>
-          <Text>Brand Details non</Text>
-        </View>
-      </ScrollView>
+    <SafeAreaView
+      style={{
+        height: '100%',
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <View>
+        <Progress.Circle size={40} indeterminate={true} />
+      </View>
     </SafeAreaView>
   );
 };

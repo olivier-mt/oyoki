@@ -26,6 +26,8 @@ import SearchBar from '../components/SearchBar';
 import BrandCard from '../components/BrandCard';
 import Logo from '../assets/img/logo.png';
 
+import * as Progress from 'react-native-progress';
+
 const HomeScreen = ({navigation}) => {
   const [finalBrands, setFinalBrands] = useState();
   const [category, setCategory] = useState('');
@@ -103,13 +105,16 @@ const HomeScreen = ({navigation}) => {
       </ScrollView>
     </SafeAreaView>
   ) : (
-    <SafeAreaView>
-      <StatusBar />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View>
-          <Text>okok</Text>
-        </View>
-      </ScrollView>
+    <SafeAreaView
+      style={{
+        height: '100%',
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <View>
+        <Progress.Circle size={40} indeterminate={true} />
+      </View>
     </SafeAreaView>
   );
 };
