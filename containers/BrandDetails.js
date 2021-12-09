@@ -85,14 +85,28 @@ const BrandDetails = ({route, navigation}) => {
           onPress={() => {
             setReading(!reading);
           }}>
-          <Text
-            style={{
-              color: 'black',
-            }}
-            numberOfLines={reading ? 100 : 2}
-            ellipsizeMode="tail">
-            {`${finalBrand.desciption}`}
-          </Text>
+          {reading ? (
+            finalBrand.description.map(elem => {
+              return (
+                <Text
+                  style={{
+                    color: 'black',
+                    marginBottom: 5,
+                  }}>
+                  {elem}
+                </Text>
+              );
+            })
+          ) : (
+            <Text
+              style={{
+                color: 'black',
+              }}
+              numberOfLines={reading ? 100 : 2}
+              ellipsizeMode="tail">
+              {`${finalBrand.description[0]}`}
+            </Text>
+          )}
           <Text
             style={{
               color: 'rgba(33, 205, 205, 1)',
