@@ -15,6 +15,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 
 import iconeInsta from '../assets/img/instagram.png';
@@ -86,9 +87,10 @@ const BrandDetails = ({route, navigation}) => {
             setReading(!reading);
           }}>
           {reading ? (
-            finalBrand.description.map(elem => {
+            finalBrand.description.map((elem, i) => {
               return (
                 <Text
+                  key={i}
                   style={{
                     color: 'black',
                     marginBottom: 5,

@@ -44,12 +44,13 @@ const BrandCard = ({finalBrands, i, navigation}) => {
 
 const styles = StyleSheet.create({
   img: {
-    height: 200,
+    height: 260,
+
     //width: 300,
   },
   card: {
     width: screenWidth,
-    height: 280,
+    height: 340,
     backgroundColor: 'white',
   },
   title: {
