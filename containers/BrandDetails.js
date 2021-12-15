@@ -22,6 +22,8 @@ import iconeInsta from '../assets/img/instagram.png';
 
 import * as Progress from 'react-native-progress';
 
+const windowWidth = Dimensions.get('window').width;
+
 const BrandDetails = ({route, navigation}) => {
   const [finalBrand, setFinalBrand] = useState();
   const [reading, setReading] = useState(false);
@@ -227,8 +229,10 @@ const styles = StyleSheet.create({
     marginLeft: 2,
   },
   littlePicture: {
-    height: 150,
-    width: 150,
+    // height: 150,
+    // width: 150,
+    height: windowWidth / 2.2,
+    width: windowWidth / 2.2,
     margin: 1,
     borderRadius: 5,
   },
