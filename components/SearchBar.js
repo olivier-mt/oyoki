@@ -89,12 +89,13 @@ const SearchBar = ({setCategory, category}) => {
         text={'Épicerie'}
       />
 
+      {/*
       <SearchBarBtn
         category={category}
         setCategory={setCategory}
         data={'tech'}
         text={'High-Tech'}
-      />
+      /> */}
 
       <SearchBarBtn
         category={category}

@@ -68,20 +68,24 @@ const BrandDetails = ({route, navigation}) => {
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Image style={styles.img} source={{uri: finalBrand.main_picture}} />
         <View style={styles.greyView}>
-          <Text
+          {/*<Text
             style={{
               color: 'rgba(95, 93, 93, 1)',
 
               fontFamily: 'Ruda-SemiBold',
             }}>
             7 jours restants
-          </Text>
+          </Text>*/}
         </View>
         <Text style={styles.title}>{`${finalBrand.name}`}</Text>
-        <Text style={styles.offer}>
-          20% de réduction sur le site avec le code:
-          <Text style={styles.code}> {`${finalBrand.discount_code}`}</Text>
-        </Text>
+        {finalBrand.discount ? (
+          <Text style={styles.offer}>
+            {`${finalBrand.discount}`}
+            <Text style={styles.code}> {`${finalBrand.discount_code}`}</Text>
+          </Text>
+        ) : (
+          <View></View>
+        )}
 
         <TouchableOpacity
           style={styles.description}
