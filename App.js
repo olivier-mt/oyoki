@@ -88,10 +88,23 @@ function Settings() {
       />
       <Stack.Screen
         name="Contact"
-        component={Contact}
+        component={WebViewScreen}
         options={{
+          tabBarVisible: false,
+
           headerBackTitle: '',
-          headerTitle: '',
+
+          headerTitle: () => {
+            return Platform.OS === 'ios' ? (
+              <Image
+                style={{width: 35, height: 35}}
+                source={Logo}
+                //resizeMode="contain"
+              />
+            ) : (
+              <Text></Text>
+            );
+          },
         }}
       />
     </Stack.Navigator>

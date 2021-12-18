@@ -33,7 +33,11 @@ const Options = ({navigation}) => {
       </View>
       <TouchableOpacity
         style={styles.cell}
-        onPress={() => navigation.navigate('Contact')}>
+        onPress={() =>
+          navigation.navigate('Contact', {
+            url: 'https://www.oyoki.fr/contact-8',
+          })
+        }>
         <Text>Nous Contacter</Text>
       </TouchableOpacity>
     </SafeAreaView>

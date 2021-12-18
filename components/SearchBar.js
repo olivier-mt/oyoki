@@ -75,12 +75,12 @@ const SearchBar = ({setCategory, category}) => {
         text={'Bijoux & Accessoires'}
       />
 
-      <SearchBarBtn
+      {/*<SearchBarBtn
         category={category}
         setCategory={setCategory}
         data={'stationery'}
         text={'Papeterie'}
-      />
+      />*/}
 
       <SearchBarBtn
         category={category}
@@ -97,12 +97,12 @@ const SearchBar = ({setCategory, category}) => {
         text={'High-Tech'}
       /> */}
 
-      <SearchBarBtn
+      {/*<SearchBarBtn
         category={category}
         setCategory={setCategory}
         data={'leisure'}
         text={'Loisir'}
-      />
+      />*/}
 
       <SearchBarBtn
         category={category}
