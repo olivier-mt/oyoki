@@ -35,37 +35,35 @@ const WebViewScreen = ({route}) => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <SafeAreaView>
-      <View
-        style={{
-          height: '100%',
-          width: '100%',
-        }}>
-        {loading && (
-          <Progress.Bar
-            progress={progress}
-            width={null}
-            height={8}
-            animated={true}
-            borderRadius={0}
-            borderWidth={0}
-          />
-        )}
-        <WebView
-          source={{uri: url}}
-          style={{marginTop: 20}}
-          onLoadStart={() => {
-            setLoading(true);
-          }}
-          onLoadProgress={event => {
-            setProgress(event.nativeEvent.progress);
-          }}
-          onLoadEnd={() => {
-            setLoading(false);
-          }}
+    <View
+      style={{
+        height: '100%',
+        width: '100%',
+      }}>
+      {loading && (
+        <Progress.Bar
+          progress={progress}
+          width={null}
+          height={8}
+          animated={true}
+          borderRadius={0}
+          borderWidth={0}
         />
-      </View>
-    </SafeAreaView>
+      )}
+      <WebView
+        source={{uri: url}}
+        // style={{marginTop: 20}}
+        onLoadStart={() => {
+          setLoading(true);
+        }}
+        onLoadProgress={event => {
+          setProgress(event.nativeEvent.progress);
+        }}
+        onLoadEnd={() => {
+          setLoading(false);
+        }}
+      />
+    </View>
   );
 };
 
