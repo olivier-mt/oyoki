@@ -40,7 +40,7 @@ const BrandDetails = ({route, navigation}) => {
 
       setFinalBrand(brand._data);
 
-      console.log('THE BRAND', brand);
+      //console.log('THE BRAND', brand._data.articles);
     };
 
     getBrand();
@@ -58,6 +58,58 @@ const BrandDetails = ({route, navigation}) => {
         />,
       );
     }
+
+    return arr;
+  };
+
+  const displayArticles = () => {
+    const arr = [];
+
+    console.log('final brand articles ', finalBrand.articles);
+
+    for (let i = 0; i < finalBrand.articles.length; i++) {
+      arr.push(
+        <TouchableOpacity
+          style={{
+            //backgroundColor: 'red',
+            width: windowWidth / 2,
+            paddingHorizontal: 4,
+            height: 255,
+          }}
+          key={i}
+          onPress={() =>
+            navigation.navigate('WebViewScreen', {
+              url: `${finalBrand.articles[i].url}`,
+            })
+          }>
+          <Image
+            style={styles.littlePicture}
+            source={{uri: finalBrand.articles[i].image}}
+            key={i}
+          />
+          <Text
+            numberOfLines={2}
+            style={{
+              fontFamily: 'Ruda',
+              fontSize: 14,
+              marginTop: 8,
+              marginBottom: 3,
+            }}>
+            {finalBrand.articles[i].name}
+          </Text>
+          <Text
+            style={{
+              fontFamily: 'Roboto-Bold',
+
+              fontSize: 15,
+            }}>
+            {finalBrand.articles[i].price}€
+          </Text>
+        </TouchableOpacity>,
+      );
+    }
+
+    console.log('arr', arr);
 
     return arr;
   };
@@ -139,10 +191,10 @@ const BrandDetails = ({route, navigation}) => {
 
         <View style={styles.centeredView}></View>
 
-        <View style={styles.imgView}>{displayPictures()}</View>
-        <View style={{height: 50}}></View>
+        <View style={styles.imgView}>{displayArticles()}</View>
+        <View style={{height: 70}}></View>
       </ScrollView>
-      <TouchableOpacity
+      {/*<TouchableOpacity
         style={styles.webSiteBtn}
         onPress={() =>
           navigation.navigate('WebViewScreen', {url: `${finalBrand.site_url}`})
@@ -155,7 +207,7 @@ const BrandDetails = ({route, navigation}) => {
           }}>
           Aller sur le site
         </Text>
-      </TouchableOpacity>
+      </TouchableOpacity>*/}
     </SafeAreaView>
   ) : (
     <SafeAreaView
@@ -236,7 +288,10 @@ const styles = StyleSheet.create({
     // height: 150,
     // width: 150,
     height: windowWidth / 2.2,
-    width: windowWidth / 2.2,
+
+    // width: windowWidth / 2.2,
+
+    //width: windowWidth / 2.1,
     margin: 1,
     borderRadius: 5,
   },
@@ -245,7 +300,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'row',
-    justifyContent: 'center',
+    //justifyContent: 'center',
     //alignItems: 'center',
   },
   webSiteBtn: {
@@ -275,6 +330,11 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 0,
       height: 2,
+    },
+    article: {
+      height: 250,
+      width: 250,
+      backgroundColor: 'rgba(33, 205, 205, 1)',
     },
   },
 });

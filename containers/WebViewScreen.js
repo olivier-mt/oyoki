@@ -44,7 +44,7 @@ const WebViewScreen = ({route}) => {
         <Progress.Bar
           progress={progress}
           width={null}
-          height={8}
+          height={5}
           animated={true}
           borderRadius={0}
           borderWidth={0}
