@@ -4,6 +4,7 @@ import firestore from '@react-native-firebase/firestore';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCoffee} from '@fortawesome/free-solid-svg-icons';
 import {faInstagram} from '@fortawesome/free-brands-svg-icons';
+import Article from '../components/Article';
 
 import {
   SafeAreaView,
@@ -46,67 +47,15 @@ const BrandDetails = ({route, navigation}) => {
     getBrand();
   }, []);
 
-  const displayPictures = () => {
-    const arr = [];
-
-    for (let i = 0; i < finalBrand.pictures.length; i++) {
-      arr.push(
-        <Image
-          style={styles.littlePicture}
-          source={{uri: finalBrand.pictures[i]}}
-          key={i}
-        />,
-      );
-    }
-
-    return arr;
-  };
-
   const displayArticles = () => {
     const arr = [];
 
-    console.log('final brand articles ', finalBrand.articles);
+    // console.log('final brand articles ', finalBrand.articles);
 
     for (let i = 0; i < finalBrand.articles.length; i++) {
-      arr.push(
-        <TouchableOpacity
-          style={{
-            //backgroundColor: 'red',
-            width: windowWidth / 2,
-            paddingHorizontal: 4,
-            height: 255,
-          }}
-          key={i}
-          onPress={() =>
-            navigation.navigate('WebViewScreen', {
-              url: `${finalBrand.articles[i].url}`,
-            })
-          }>
-          <Image
-            style={styles.littlePicture}
-            source={{uri: finalBrand.articles[i].image}}
-            key={i}
-          />
-          <Text
-            numberOfLines={2}
-            style={{
-              fontFamily: 'Ruda',
-              fontSize: 14,
-              marginTop: 8,
-              marginBottom: 3,
-            }}>
-            {finalBrand.articles[i].name}
-          </Text>
-          <Text
-            style={{
-              fontFamily: 'Roboto-Bold',
+      const article = finalBrand.articles[i];
 
-              fontSize: 15,
-            }}>
-            {finalBrand.articles[i].price}€
-          </Text>
-        </TouchableOpacity>,
-      );
+      arr.push(<Article i={i} article={article} />);
     }
 
     console.log('arr', arr);
@@ -192,22 +141,26 @@ const BrandDetails = ({route, navigation}) => {
         <View style={styles.centeredView}></View>
 
         <View style={styles.imgView}>{displayArticles()}</View>
-        <View style={{height: 70}}></View>
+        <View style={{height: 75}}></View>
       </ScrollView>
-      {/*<TouchableOpacity
-        style={styles.webSiteBtn}
-        onPress={() =>
-          navigation.navigate('WebViewScreen', {url: `${finalBrand.site_url}`})
-        }>
-        <Text
-          style={{
-            fontFamily: 'Roboto-Bold',
-            color: 'white',
-            fontSize: 15,
-          }}>
-          Aller sur le site
-        </Text>
-      </TouchableOpacity>*/}
+      {
+        <TouchableOpacity
+          style={styles.webSiteBtn}
+          onPress={() =>
+            navigation.navigate('WebViewScreen', {
+              url: `${finalBrand.site_url}`,
+            })
+          }>
+          <Text
+            style={{
+              fontFamily: 'Roboto-Bold',
+              color: 'white',
+              fontSize: 15,
+            }}>
+            Aller sur le site
+          </Text>
+        </TouchableOpacity>
+      }
     </SafeAreaView>
   ) : (
     <SafeAreaView
@@ -307,7 +260,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: 'rgba(33, 205, 205, 1)',
     height: 42,
-    width: 270,
+    width: 275,
     borderRadius: 15,
     bottom: 25,
     justifyContent: 'center',

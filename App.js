@@ -61,6 +61,8 @@ function Brands() {
         component={WebViewScreen}
         options={{
           headerBackTitle: '',
+          animation: 'fade_from_bottom',
+
           headerTitle: () => {
             return Platform.OS === 'ios' ? (
               <Image
