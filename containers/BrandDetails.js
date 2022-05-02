@@ -30,6 +30,8 @@ const BrandDetails = ({route, navigation}) => {
   const [reading, setReading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
+  // Corresponding to BRANDS on Firestore
+
   const {internal_name} = route.params;
 
   useEffect(() => {

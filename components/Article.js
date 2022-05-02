@@ -1,27 +1,14 @@
 import React, {useState, useEffect, Component, Modal} from 'react';
-import type {Node} from 'react';
-import firestore from '@react-native-firebase/firestore';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faCoffee} from '@fortawesome/free-solid-svg-icons';
-import {faInstagram} from '@fortawesome/free-brands-svg-icons';
+
 import {useNavigation} from '@react-navigation/native';
 
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
-  View,
   Image,
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-
-import iconeInsta from '../assets/img/instagram.png';
-
-import * as Progress from 'react-native-progress';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -31,7 +18,6 @@ const Article = ({article, i}) => {
   return (
     <TouchableOpacity
       style={{
-        //backgroundColor: 'red',
         width: windowWidth / 2,
         paddingHorizontal: 4,
         height: 255,
@@ -135,7 +121,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   imgView: {
-    // backgroundColor: 'blue',
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'row',
