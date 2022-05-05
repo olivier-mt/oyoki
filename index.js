@@ -13,6 +13,8 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
 });
 
 async function requestUserPermission() {
+  const token = await messaging().getToken();
+  console.log('Token: ', token);
   const authStatus = await messaging().requestPermission();
   const enabled =
     authStatus === messaging.AuthorizationStatus.AUTHORIZED ||

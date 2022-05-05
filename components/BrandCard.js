@@ -30,7 +30,9 @@ const BrandCard = ({finalBrands, i, navigation}) => {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('Details', brand)}
+      onPress={() => {
+        navigation.navigate('Details', brand);
+      }}
       style={styles.card}>
       <View>
         <Image style={styles.img} source={{uri: brand.main_picture}} />

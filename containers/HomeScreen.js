@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import type {Node} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import firestore from '@react-native-firebase/firestore';
-
+import messaging from '@react-native-firebase/messaging';
 import {
   SafeAreaView,
   ScrollView,
@@ -14,6 +13,7 @@ import {
   TouchableHighlight,
   FlatList,
   TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
 
 import {
@@ -31,28 +31,67 @@ import * as Progress from 'react-native-progress';
 const HomeScreen = ({navigation}) => {
   const [finalBrands, setFinalBrands] = useState();
   const [category, setCategory] = useState('');
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
-    const getBrands = async () => {
-      const brands = await firestore().collection('BRANDS').get();
-      const articles = await firestore()
-        .collection('BRANDS')
-        .doc('mawu')
-        .collection('ARTICLES')
-        .get();
-
-      //
-      // console.log('brandss', brands._docs['0']._data.main_picture);
-
-      // console.log('brandss', brands._docs);
-
-      // console.log('articles', articles._docs);
-
-      setFinalBrands(brands._docs);
-    };
-
     getBrands();
   }, []);
+
+  useEffect(() => {
+    // Assume a message-notification contains a "type" property in the data payload of the screen to open
+
+    messaging().onNotificationOpenedApp(remoteMessage => {
+      console.log(
+        'Notification caused app to open from background state:',
+        remoteMessage.data,
+      );
+      const {internal_name} = remoteMessage.data;
+      if (internal_name) {
+        navigation.navigate('Details', {internal_name});
+      }
+    });
+
+    // Check whether an initial notification is available
+    messaging()
+      .getInitialNotification()
+      .then(remoteMessage => {
+        if (remoteMessage) {
+          console.log(
+            'Notification caused app to open from quit state:',
+            remoteMessage.data,
+          );
+          const {internal_name} = remoteMessage.data;
+          if (internal_name) {
+            navigation.navigate('Details', {internal_name});
+          }
+        }
+      });
+  }, []);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    getBrands().then(() => {
+      setRefreshing(false);
+    });
+  }, []);
+
+  const getBrands = async () => {
+    const brands = await firestore().collection('BRANDS').get();
+    // const articles = await firestore()
+    //   .collection('BRANDS')
+    //   .doc('mawu')
+    //   .collection('ARTICLES')
+    //   .get();
+
+    //
+    // console.log('brandss', brands._docs['0']._data.main_picture);
+
+    // console.log('brandss', brands._docs);
+
+    // console.log('articles', articles._docs);
+
+    setFinalBrands(brands._docs);
+  };
 
   const displayBrands = () => {
     const brands = [];
@@ -100,7 +139,11 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.header}>
         <SearchBar setCategory={setCategory} category={category} />
       </View>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+        contentInsetAdjustmentBehavior="automatic">
         {category === '' ? displayBrands() : displayFilteredBrands()}
       </ScrollView>
     </SafeAreaView>

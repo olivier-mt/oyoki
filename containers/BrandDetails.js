@@ -60,7 +60,7 @@ const BrandDetails = ({route, navigation}) => {
       arr.push(<Article i={i} article={article} />);
     }
 
-    console.log('arr', arr);
+    //console.log('arr', arr);
 
     return arr;
   };
