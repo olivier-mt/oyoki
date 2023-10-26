@@ -2,6 +2,8 @@ import React, {useState, useEffect, Component, Modal} from 'react';
 
 import {useNavigation} from '@react-navigation/native';
 
+// v2
+
 import {
   StyleSheet,
   Text,
